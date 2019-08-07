@@ -7,10 +7,17 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint ."
   },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 9"
+  ],
   "keywords": [],
   "author": "Kingluddite",
   "license": "ISC",
   "devDependencies": {
+    "autoprefixer": "^9.6.1",
+    "babel-eslint": "^10.0.2",
     "eslint": "4.10.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-config-prettier": "2.7.0",
@@ -18,7 +25,12 @@
     "eslint-plugin-jsx-a11y": "^6.0.1",
     "eslint-plugin-prettier": "2.3.1",
     "eslint-plugin-react": "^7.4.0",
+    "postcss-loader": "^3.0.0",
     "prettier": "1.8.2",
     "prettier-eslint-cli": "^4.4.0"
+  },
+  "dependencies": {
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1"
   }
 }
