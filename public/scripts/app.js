@@ -1,41 +1,71 @@
 'use strict';
 
 var app = {
-  name: 'John',
-  location: 'LA'
+  title: 'My First React App',
+  subtitle: 'Learning About Expressions',
+  options: ['One', 'Two']
 };
 
-function getLocation(location) {
-  if (location) {
-    return app.location;
-  }
-  return 'Unknown';
-}
-
-var templateTwo = React.createElement(
+var template = React.createElement(
   'div',
   null,
   React.createElement(
     'h1',
     null,
-    'My Name: ',
-    app.name
+    app.title
   ),
-  React.createElement(
-    'h2',
-    null,
-    app.title ? app.title : 'No title'
-  ),
-  React.createElement(
+  app.subtitle && React.createElement(
     'p',
     null,
-    'Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis officia culpa dolore eius dolor fugiat. Molestias, saepe quia. Sunt voluptate veritatis labore qui dicta doloremque reiciendis asperiores, obcaecati fugit blanditiis.'
+    app.subtitle
   ),
-  React.createElement(
+  app.options.length > 0 ? React.createElement(
     'p',
     null,
-    getLocation(app.location)
+    'Here are your options'
+  ) : React.createElement(
+    'p',
+    null,
+    'No options'
+  ),
+  React.createElement(
+    'ol',
+    null,
+    React.createElement(
+      'li',
+      null,
+      'Item one'
+    ),
+    React.createElement(
+      'li',
+      null,
+      'Item two'
+    )
   )
 );
+var appRoot = document.getElementById('root');
+ReactDOM.render(template, appRoot);
 
-ReactDOM.render(templateTwo, document.getElementById('root'));
+// const user = {
+//   name: 'Don',
+//   age: 22,
+//   location: 'Las Vegas',
+// };
+
+// function getLocation(location) {
+//   if (location) {
+//     return <p>Location: {location}</p>;
+//   }
+// }
+
+// const templateTwo = (
+//   <div>
+//     <h1>{user.name ? user.name : 'Anonymous'}</h1>
+//     {user.age && user.age >= 18 && <p>Age: {user.age}</p>}
+//     {getLocation(user.location)}
+//   </div>
+// );
+
+// const appRoot = document.getElementById('root');
+
+// ReactDOM.render(templateTwo, appRoot);

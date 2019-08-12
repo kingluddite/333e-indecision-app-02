@@ -1,27 +1,43 @@
 const app = {
-  name: 'John',
-  location: 'LA',
+  title: 'My First React App',
+  subtitle: 'Learning About Expressions',
+  options: ['One', 'Two'],
 };
 
-function getLocation(location) {
-  if (location) {
-    return app.location;
-  }
-  return 'Unknown';
-}
-
-const templateTwo = (
+const template = (
   <div>
-    <h1>My Name: {app.name}</h1>
-    <h2>{app.title ? app.title : 'No title'}</h2>
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis officia
-      culpa dolore eius dolor fugiat. Molestias, saepe quia. Sunt voluptate
-      veritatis labore qui dicta doloremque reiciendis asperiores, obcaecati
-      fugit blanditiis.
-    </p>
-    <p>{getLocation(app.location)}</p>
+    <h1>{app.title}</h1>
+    {app.subtitle && <p>{app.subtitle}</p>}
+    {app.options.length > 0 ? <p>Here are your options</p> : <p>No options</p>}
+    <ol>
+      <li>Item one</li>
+      <li>Item two</li>
+    </ol>
   </div>
 );
+const appRoot = document.getElementById('root');
+ReactDOM.render(template, appRoot);
 
-ReactDOM.render(templateTwo, document.getElementById('root'));
+// const user = {
+//   name: 'Don',
+//   age: 22,
+//   location: 'Las Vegas',
+// };
+
+// function getLocation(location) {
+//   if (location) {
+//     return <p>Location: {location}</p>;
+//   }
+// }
+
+// const templateTwo = (
+//   <div>
+//     <h1>{user.name ? user.name : 'Anonymous'}</h1>
+//     {user.age && user.age >= 18 && <p>Age: {user.age}</p>}
+//     {getLocation(user.location)}
+//   </div>
+// );
+
+// const appRoot = document.getElementById('root');
+
+// ReactDOM.render(templateTwo, appRoot);
