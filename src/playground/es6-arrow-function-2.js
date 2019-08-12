@@ -1,5 +1,3 @@
-"use strict";
-
 // const add = function(a, b) {
 //   console.log(arguments);
 //   return a + b;
@@ -24,15 +22,11 @@
 
 // console.log(user.printCoolPlace());
 
-var multiplier = {
+const multiplier = {
   numbers: [1, 2, 3],
   multiplyBy: 10,
-  multiply: function multiply() {
-    var _this = this;
-
-    return this.numbers.map(function (number) {
-      return number * _this.multiplyBy;
-    });
-  }
+  multiply() {
+    return this.numbers.map(number => number * this.multiplyBy);
+  },
 };
 console.log(multiplier.multiply());
