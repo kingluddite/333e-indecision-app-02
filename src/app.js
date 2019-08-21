@@ -1,26 +1,18 @@
-// const obj = {
-//   name: 'John',
-//   getName() {
-//     return this.name;
-//   },
-// };
-// const getName = obj.getName.bind({ name: 'Jane' });
-
-// const func = function() {
-//   console.log(this);
-// };
-// func();
-// console.log(getName());
 class IndecisionApp extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      options: ['Item One', 'Item Two', 'Item Three', 'Item Four'],
+    };
+  }
   render() {
     const title = 'Indecision App';
     const subtitle = 'Let your computer tell you what to do';
-    const options = ['Item One', 'Item Two', 'Item Four'];
     return (
       <div>
         <Header title={title} subtitle={subtitle} />
-        <Action />
-        <Options options={options} />
+        <Action hasOptions={this.state.options.length > 0} />
+        <Options options={this.state.options} />
         <AddOption />
       </div>
     );
@@ -45,7 +37,9 @@ class Action extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={this.handlePick}>What should I do?</button>
+        <button onClick={this.handlePick} disabled={!this.props.hasOptions}>
+          What should I do?
+        </button>
       </div>
     );
   }
