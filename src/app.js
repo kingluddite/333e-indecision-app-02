@@ -2,8 +2,10 @@ class IndecisionApp extends React.Component {
   constructor(props) {
     super(props);
     this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
+    this.handleDeleteOption = this.handleDeleteOption.bind(this);
     this.handlePick = this.handlePick.bind(this);
     this.handleAddOption = this.handleAddOption.bind(this);
+
     this.state = {
       options: props.options,
     };
@@ -19,6 +21,14 @@ class IndecisionApp extends React.Component {
     this.setState(() => ({
       options: [],
     }));
+  }
+
+  handleDeleteOption(optionToRemove) {
+    this.setState(prevState => ({
+      options: prevState.options.filter(option =>
+        optionToRemove !== option
+      )
+    }))
   }
 
   handleAddOption(option) {
@@ -45,6 +55,7 @@ class IndecisionApp extends React.Component {
         <Options
           options={this.state.options}
           handleDeleteOptions={this.handleDeleteOptions}
+          handleDeleteOption={this.handleDeleteOption}
         />
         <AddOption handleAddOption={this.handleAddOption} />
       </div>
@@ -75,18 +86,28 @@ const Action = props => (
   </div>
 );
 
-const Option = props => (
+const Option = props => {
+  return (
   <div>
-    <p key={props.option}>
-      <strong>Option</strong>: {props.option}
-    </p>
+    {props.optionText}
+    <button onClick={(e) => {
+      props.handleDeleteOption(props.optionText)
+    }}>Remove</button>
   </div>
-);
+  )
+};
+
 const Options = props => (
   <div>
     <button onClick={props.handleDeleteOptions}>Remove All</button>
     <p>Options Text</p>
-    {props.options.map(option => <Option key={option} option={option} />)}
+    {props.options.map(option => (
+      <Option
+        key={option}
+        optionText={option}
+        handleDeleteOption={props.handleDeleteOption}
+      />
+    ))}
   </div>
 );
 
@@ -121,13 +142,5 @@ class AddOption extends React.Component {
     );
   }
 }
-
-// const User = (prop) => {
-//   return (
-//     <div>
-//       <p>Name: {prop.name}</p>
-//     </div>
-//   )
-// }
 
 ReactDOM.render(<IndecisionApp />, document.getElementById('root'));
