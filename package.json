@@ -4,8 +4,16 @@
   "description": "Starting point for build modern websites",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint ."
+    "serve": "live-server public/",
+    "build": "webpack",
+    "dev-server": "webpack-dev-server & open http://localhost:8080/"
+  },
+  "babel": {
+    "presets": [
+      "@babel/env",
+      "@babel/react"
+    ],
+"plugins": ["@babel/plugin-proposal-class-properties"]
   },
   "browserslist": [
     "> 1%",
@@ -16,8 +24,15 @@
   "author": "Kingluddite",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
     "autoprefixer": "^9.6.1",
+    "babel-cli": "^6.26.0",
     "babel-eslint": "^10.0.2",
+    "babel-loader": "^8.0.6",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
     "eslint": "4.10.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-config-prettier": "2.7.0",
@@ -27,12 +42,14 @@
     "eslint-plugin-react": "^7.4.0",
     "postcss-loader": "^3.0.0",
     "prettier": "1.8.2",
-    "prettier-eslint-cli": "^4.4.0"
+    "prettier-eslint-cli": "^4.4.0",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.7"
   },
   "dependencies": {
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-react": "^6.24.1",
+    "live-server": "^1.2.1",
     "react": "^16.9.0",
-    "react-dom": "^16.9.0"
+    "react-dom": "^16.9.0",
+    "validator": "^11.1.0"
   }
 }
