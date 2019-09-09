@@ -1,7 +1,11 @@
 .header {
   background: $off-black; 
   color: #fff;
-  margin-bottom: $xl-size;
+  margin-bottom: $m-size;
+
+  @media (min-width: $desktop-breakpoint) {
+    margin-bottom: $xl-size;
+  }
   padding: $m-size 0;
 
   &__title {

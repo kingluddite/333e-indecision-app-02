@@ -6,7 +6,11 @@
   color: $white;
   font-size: $l-size;
   font-weight: bold;
-  margin-bottom: $xl-size;
+  margin-bottom: $m-size;
+
+  @media (min-width: $desktop-breakpoint) {
+    margin-bottom: $xl-size;
+  }
   padding: 2.4rem;
   // take up full width of container
   width: 100%;
