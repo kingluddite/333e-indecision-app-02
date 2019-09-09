@@ -4,10 +4,13 @@ import Header from './Header';
 import AddOption from './AddOption';
 import Options from './Options';
 import Action from './Action';
+// third party components
+import OptionModal from './OptionModal';
 
 export default class IndecisionApp extends React.Component {
   state = {
     options: [],
+    selectedOption: undefined,
   };
 
   componentDidMount() {
@@ -36,10 +39,19 @@ export default class IndecisionApp extends React.Component {
     console.log('componentWillUnmount fired!');
   }
 
+  handleClearSelectedOption = () => {
+    this.setState(() => ({
+      selectedOption: undefined,
+    }));
+  };
+
   handlePick = () => {
     const randomNum = Math.floor(Math.random() * this.state.options.length);
     const option = this.state.options[randomNum];
-    alert(option);
+    // alert(option);
+    this.setState(() => ({
+      selectedOption: option,
+    }));
   };
 
   handleDeleteOptions = () => {
@@ -71,16 +83,24 @@ export default class IndecisionApp extends React.Component {
     return (
       <div>
         <Header subtitle={subtitle} />
-        <Action
-          hasOptions={this.state.options.length > 0}
-          handlePick={this.handlePick}
-        />
-        <Options
-          options={this.state.options}
-          handleDeleteOptions={this.handleDeleteOptions}
-          handleDeleteOption={this.handleDeleteOption}
-        />
-        <AddOption handleAddOption={this.handleAddOption} />
+        <div className="container">
+          <Action
+            hasOptions={this.state.options.length > 0}
+            handlePick={this.handlePick}
+          />
+          <div className="widget">
+            <Options
+              options={this.state.options}
+              handleDeleteOptions={this.handleDeleteOptions}
+              handleDeleteOption={this.handleDeleteOption}
+            />
+            <AddOption handleAddOption={this.handleAddOption} />
+          </div>
+          <OptionModal
+            selectedOption={this.state.selectedOption}
+            handleClearSelectedOption={this.handleClearSelectedOption}
+          />
+        </div>
       </div>
     );
   }
